@@ -1,0 +1,84 @@
+spring:
+  application:
+    name: st-api-produto
+  profiles:
+    active: "prd"
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        default_schema: stdatabase
+        show_sql: true
+        use_sql_comments: true
+        format_sql : true
+        type: trace
+  show-sql: true
+  datasource:
+   hikari:
+     connection-timeout: 600000
+     minimum-idle: 2
+     maximum-pool-size: 5
+     idle-timeout : 3000000
+     max-lifetime: 3000000
+     auto-commit: true
+     pool-name: POSTGRESQL-POOL
+   driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
+  data:
+   mongodb:
+     database: ${MONGO_DB:st_integra}
+     host: ${MONGO_HOST:localhost}
+     password: ${MONGO_PASSWORD:admin}
+     port: ${MONGO_PORT:27017}
+     username: ${MONGO_USERNAME:admin}
+server:
+  port: ${port:0}
+  mvc:
+    format:
+      date-time: true
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    date-format: yyyy-MM-dd'T'HH:mm
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+        INFO: INFO
+    springframework:
+      jdbc:
+        core:
+          JdbcTemplate: DEBUG
+          StatementCreatorUtils: TRACE
+      web:
+        servlet:
+          mvc:
+            method:
+              annotation:
+                RequestMappingHandlerMapping: TRACE
+  web: DEBUG
+  root: WARN
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss} - %msg%n"
+    file: "%d{dd-MM-yyyy} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: hibernate_log_file.log
+
+debug: false
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+  client:
+    service-url:
+      defaultZone: http://${eureka_zone:192.168.200.134}:${eureka_port:9100}/eureka
