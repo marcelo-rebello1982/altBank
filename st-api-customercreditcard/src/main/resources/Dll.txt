@@ -1,0 +1,92 @@
+ create table sistema.fisica (
+       id int8 not null,
+        dig_cpf numeric(19, 2) not null,
+        num_cpf numeric(19, 2) not null,
+        rg varchar(255),
+        pessoa_id int8,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table sistema.fisica (
+       id int8 not null,
+        dig_cpf numeric(19, 2) not null,
+        num_cpf numeric(19, 2) not null,
+        rg varchar(255),
+        pessoa_id int8,
+        primary key (id)
+    )
+05-12-2024 21:37:20 - 
+    
+    create table sistema.juridica (
+       id int8 not null,
+        dig_cnpj numeric(19, 2),
+        num_cnpj numeric(19, 2),
+        num_filial numeric(19, 2),
+        pessoa_id int8,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table sistema.juridica (
+       id int8 not null,
+        dig_cnpj numeric(19, 2),
+        num_cnpj numeric(19, 2),
+        num_filial numeric(19, 2),
+        pessoa_id int8,
+        primary key (id)
+    )
+05-12-2024 21:37:20 - 
+    
+    create table sistema.pessoa (
+       id int8 not null,
+        created_at timestamp,
+        last_modified_date timestamp,
+        update_at timestamp,
+        datanascimento timestamp,
+        nome varchar(255),
+        tipopessoa varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table sistema.pessoa (
+       id int8 not null,
+        created_at timestamp,
+        last_modified_date timestamp,
+        update_at timestamp,
+        datanascimento timestamp,
+        nome varchar(255),
+        tipopessoa varchar(255),
+        primary key (id)
+    )
+05-12-2024 21:37:20 - create sequence sistema.fisica_seq start 1 increment 1
+Hibernate: create sequence sistema.fisica_seq start 1 increment 1
+05-12-2024 21:37:20 - create sequence sistema.juridica_seq start 1 increment 1
+Hibernate: create sequence sistema.juridica_seq start 1 increment 1
+05-12-2024 21:37:20 - create sequence sistema.pessoa_seq start 1 increment 1
+Hibernate: create sequence sistema.pessoa_seq start 1 increment 1
+05-12-2024 21:37:20 - 
+    
+    alter table sistema.fisica 
+       add constraint FKarcest1b25wdysils1d9nsjob 
+       foreign key (pessoa_id) 
+       references sistema.pessoa
+Hibernate: 
+    
+    alter table sistema.fisica 
+       add constraint FKarcest1b25wdysils1d9nsjob 
+       foreign key (pessoa_id) 
+       references sistema.pessoa
+05-12-2024 21:37:20 - 
+    
+    alter table sistema.juridica 
+       add constraint FKmsxvwprqesjmpyx62ybjbjvub 
+       foreign key (pessoa_id) 
+       references sistema.pessoa
+Hibernate: 
+    
+    alter table sistema.juridica 
+       add constraint FKmsxvwprqesjmpyx62ybjbjvub 
+       foreign key (pessoa_id) 
+       references sistema.pessoa
