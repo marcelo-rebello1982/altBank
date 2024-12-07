@@ -53,11 +53,11 @@ public class CartaoController extends CommonsController {
 	
 	@Operation(summary = "Get Max Id from Cartao")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201", description = "Order created with sucessful", content = {
+			@ApiResponse(responseCode = "201", description = "Credit Card created with sucessful", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = CartaoDTO.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content),
 			@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content) })
-	@Tag(name = "Cartao", description = "Get a Cartao max id record")
+	@Tag(name = "Cartao", description = "Get a Credit Card max id record")
 	@GetMapping("/maxId")
 	public ResponseEntity<Object> maxId(@RequestHeader("pessoaId") Long pessoaId) {
 
